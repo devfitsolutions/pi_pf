@@ -40,8 +40,8 @@ public class PessoaCtrl implements Serializable {
 		try {
 			if (pessoa.getId() == 0) {
 				
-				//pessoa.setUf(end_Estado.getSigla());
-				//pessoa.setCidade(cidade.getNome());
+				pessoa.setUf(end_Estado.getSigla());
+				pessoa.setCidade(cidade.getNome());
 				
 				PessoaDAO.inserir(pessoa);
 				return actionInserir();
@@ -66,7 +66,7 @@ public class PessoaCtrl implements Serializable {
 			EstadoDAO estadodao = new EstadoDAO();
 			end_Estados = estadodao.listagem();
 
-			cidades = new ArrayList<>(); //Carregar uma lista vazia de cidades
+			cidades = new ArrayList<Cidade>(); //Carregar uma lista vazia de cidades
 
 			return "/publico/form_cliente";
 		} catch (RuntimeException erro) {
@@ -106,7 +106,7 @@ public class PessoaCtrl implements Serializable {
 				cidades = cidadedao.buscaPorEstado(end_Estado.getId());
 				
 			} else {
-				cidades = new ArrayList<>(); //Carregar uma lista vazia de cidades
+				cidades = new ArrayList<Cidade>(); //Carregar uma lista vazia de cidades
 			}
 		} catch (RuntimeException erro) {
 			System.out.println("Combo Cidade não pode ser carregada.");
