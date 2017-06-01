@@ -21,7 +21,7 @@ public class CidadeDAO implements Serializable {
 	public List<Cidade> buscaPorEstado(int estado_codigo){
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
-		/* Query consulta;
+		/* Query consultaaaaa;
 		consulta = sessao.createQuery("from end_cidade  "
 					+ "where est_id like :parametro order by cid_nome ");
 		 consulta.setString("parametro", "%" + estado_codigo + "%"); */
