@@ -40,14 +40,17 @@ public class PessoaCtrl implements Serializable {
 		try {
 			if (pessoa.getId() == 0) {
 				
-				//pessoa.setUf(end_Estado.getSigla());
-				//pessoa.setCidade(cidade.getNome());
+				pessoa.setUf(end_Estado.getSigla());
+				pessoa.setCidade(cidade.getNome());
+				System.out.println("A pessoa foi instaciada. ID = " + pessoa.getId());
+				System.out.println("Estado ID = " + end_Estado.getSigla());
+				System.out.println("Cidade ID = " + cidade.getNome());
 				
 				PessoaDAO.inserir(pessoa);
 				return actionInserir();
 			} else {
 				PessoaDAO.alterar(pessoa);
-				return "/publico/form_cliente";
+				return "/admin/lista_pessoa";
 			}
 
 		} catch (RuntimeException erro) {
@@ -62,6 +65,25 @@ public class PessoaCtrl implements Serializable {
 
 		try {
 			pessoa = new Pessoa();
+			
+			EstadoDAO estadodao = new EstadoDAO();
+			end_Estados = estadodao.listagem();
+
+			cidades = new ArrayList<>(); //Carregar uma lista vazia de cidades
+
+			return "/admin/lista_pessoa";
+		} catch (RuntimeException erro) {
+			System.out.println("Erro ao tentar carregar Estados ao abrir o formulário de pessoa.");
+			erro.printStackTrace();
+			return null;
+		}
+	}
+	
+	public String actionInserirPessoaComum() {
+
+		try {
+			pessoa = new Pessoa();
+			//System.out.println("A pessoa foi instaciada. ID = " + pessoa.getId());
 
 			EstadoDAO estadodao = new EstadoDAO();
 			end_Estados = estadodao.listagem();
@@ -78,7 +100,7 @@ public class PessoaCtrl implements Serializable {
 
 	public String actionExcluir() {
 		PessoaDAO.excluir(pessoa);
-		return "/publico/form_cliente";
+		return "/admin/lista_pessoa";
 	}
 
 

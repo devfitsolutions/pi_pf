@@ -115,12 +115,11 @@
 					<h:outputLabel value="RG" />
 					<p:inputText value="#{pessoaCtrl.pessoa.rg}" size="6"
 						maxlength="14" />
-					<h:outputLabel value="Data Nascimento" />
-					<p:inputText value="#{pessoaCtrl.pessoa.data}" size="6"
-						maxlength="10">
-						<f:convertDateTime type="date" pattern="dd/mm/yyyy"
-							timeZone="America/Sao_Paulo" />
-					</p:inputText>
+					<p:outputLabel value="Data de Nascimento" />
+					<p:calendar id="button" value="#{pessoaCtrl.pessoa.data}"
+						showOn="button">
+						<f:convertDateTime dateStyle="default" />
+					</p:calendar>
 					<h:outputLabel value="Rua" />
 					<p:inputText value="#{pessoaCtrl.pessoa.rua}" size="6"
 						maxlength="80" />
@@ -198,7 +197,8 @@
 					</h:column>
 				</h:dataTable>
 
-<hr></hr><br />
+				<hr></hr>
+				<br />
 
 				<h:commandButton value="Excluir"
 					action="#{pessoaCtrl.actionExcluir}" update="growl"></h:commandButton>
@@ -207,7 +207,7 @@
 				<h:commandButton value="Cancelar" oncomplete="cadDialog.hide()"></h:commandButton>
 			</p:outputPanel>
 		</p:dialog>
-		<p:commandButton value="Inicio" action="/index.xhtml"></p:commandButton>
+		<p:commandButton value="Inicio" action="/publico/index.xhtml"></p:commandButton>
 	</h:form>
 </h:body>
 </html>
