@@ -1,7 +1,3 @@
 Qualqe
 asas
-<<<<<<< HEAD
 Merda
-=======
-merda2
->>>>>>> 0f58f8cbe1e9a2675e49ac98b18f54c0fd18fa3f
