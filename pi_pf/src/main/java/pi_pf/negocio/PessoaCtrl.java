@@ -42,9 +42,9 @@ public class PessoaCtrl implements Serializable {
 				
 				pessoa.setUf(end_Estado.getSigla());
 				pessoa.setCidade(cidade.getNome());
-				System.out.println("A pessoa foi instaciada. ID = " + pessoa.getId());
-				System.out.println("Estado ID = " + end_Estado.getSigla());
-				System.out.println("Cidade ID = " + cidade.getNome());
+				//System.out.println("A pessoa foi instaciada. ID = " + pessoa.getId());
+				//System.out.println("Estado ID = " + end_Estado.getSigla());
+				//System.out.println("Cidade ID = " + pessoa.getCidade());
 				
 				PessoaDAO.inserir(pessoa);
 				return actionInserir();

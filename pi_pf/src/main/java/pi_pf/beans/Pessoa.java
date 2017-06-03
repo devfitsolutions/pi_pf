@@ -6,12 +6,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
-@Entity 		//Define que a classe Pessoa será uma tabela no banco de dados
+@Entity 		//Define que a classe Pessoa serï¿½ uma tabela no banco de dados
 @Table (name="Pessoa") 
 public class Pessoa {
 
 	@Id //Define um atributo identificador na tabela
-	@GeneratedValue (strategy = GenerationType.IDENTITY) //Define a forma que o atributo identificador irá fazer o incremento
+	@GeneratedValue (strategy = GenerationType.IDENTITY) //Define a forma que o atributo identificador irï¿½ fazer o incremento
 	@Column (name="pes_id")
 	private int id;
 	@Column (name="pes_nome", length = 60, nullable = true)
@@ -39,8 +39,8 @@ public class Pessoa {
 	@Column (name="pes_tipo", length = 30)
 	private String tipo;
 	
-	//Relacionamento de 1 para vários
-	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch=FetchType.EAGER) //cascade significa que quando excluir um pessoa da tabela, todos os telefone também serão excluídos.
+	//Relacionamento de 1 para vï¿½rios
+	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch=FetchType.EAGER) //cascade significa que quando excluir um pessoa da tabela, todos os telefone tambï¿½m serï¿½o excluï¿½dos.
 	private List<Fone> fones = new ArrayList<Fone>();
 	
 	
@@ -88,7 +88,7 @@ public class Pessoa {
 		this.bairro = bairro;
 	}
 	public String getCidade() {
-		return cidade;
+		return this.cidade;
 	}
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
