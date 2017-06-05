@@ -1,5 +1,5 @@
 Usar para anotacoes
-
+Drogaria Pacheco
 create table pedido (ped_id serial primary key,
                      prod_id int not null,
                      pes_id int not null,
