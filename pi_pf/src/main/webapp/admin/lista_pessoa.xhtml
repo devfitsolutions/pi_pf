@@ -11,6 +11,9 @@
 	<title>Lista de Pessoas</title>
 </h:head>
 <h:body>
+	<ui:insert name="header">
+		<ui:include src="/templates/modelo.xhtml" />
+	</ui:insert>
 	<h:form id="form">
 		<p:growl id="msgs" showDetail="true" />
 

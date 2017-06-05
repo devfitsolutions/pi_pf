@@ -44,7 +44,7 @@ public class PessoaCtrl implements Serializable {
 				pessoa.setCidade(cidade.getNome());
 				//System.out.println("A pessoa foi instaciada. ID = " + pessoa.getId());
 				//System.out.println("Estado ID = " + end_Estado.getSigla());
-				//System.out.println("Cidade ID = " + pessoa.getCidade());
+				System.out.println("Cidade ID = " + pessoa.getCidade());
 				
 				PessoaDAO.inserir(pessoa);
 				return actionInserir();
@@ -83,6 +83,7 @@ public class PessoaCtrl implements Serializable {
 
 		try {
 			pessoa = new Pessoa();
+			cidade = new Cidade();
 			//System.out.println("A pessoa foi instaciada. ID = " + pessoa.getId());
 
 			EstadoDAO estadodao = new EstadoDAO();

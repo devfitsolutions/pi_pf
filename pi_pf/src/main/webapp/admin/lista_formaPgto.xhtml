@@ -11,6 +11,9 @@
 	<title>Lista de Formas de Pagamento</title>
 </h:head>
 <h:body>
+	<ui:insert name="header">
+		<ui:include src="/templates/modelo.xhtml" />
+	</ui:insert>
 	<h:form id="form">
 		<p:growl id="msgs" showDetail="true" />
 
@@ -46,42 +49,54 @@
 					oncomplete="PF('cadDialog').show()" update=":form:cadDetail">
 				</p:commandButton>
 			</f:facet>
-			
+
 			<p:column headerText="Código" sortBy="f.id">
-				<h:outputText value="#{f.id}"/>
+				<h:outputText value="#{f.id}" />
 			</p:column>
-			
+
 			<p:column headerText="Descrição" sortBy="f.descricao">
-				<h:outputText value="#{f.descricao}"/>
+				<h:outputText value="#{f.descricao}" />
 			</p:column>
-			
+
 			<p:column headerText="Nº Max. Parcelas" sortBy="f.numMaxParc">
-				<h:outputText value="#{f.numMaxParc}"/>
+				<h:outputText value="#{f.numMaxParc}" />
 			</p:column>
-			
+
 			<p:column style="width:32px;text-align: center">
-				<p:commandButton update=":form:cadDetail" oncomplete="PF('cadDialog').show()" icon="ui-icon-search" title="View">
-					<f:setPropertyActionListener value="#{f}" target="#{formaPgtoCtrl.formaPgto}"></f:setPropertyActionListener>
+				<p:commandButton update=":form:cadDetail"
+					oncomplete="PF('cadDialog').show()" icon="ui-icon-search"
+					title="View">
+					<f:setPropertyActionListener value="#{f}"
+						target="#{formaPgtoCtrl.formaPgto}"></f:setPropertyActionListener>
 				</p:commandButton>
 			</p:column>
 		</p:dataTable>
-		
-		<p:dialog header="Cadastro de forma de pagamento" widgetVar="cadDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+
+		<p:dialog header="Cadastro de forma de pagamento"
+			widgetVar="cadDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false">
 			<p:outputPanel id="cadDetail" style="text-align:center;">
 				<h:panelGrid columns="2" style="text-align:left">
-					<h:outputLabel value="Código"/>
-					<p:inputText value="#{formaPgtoCtrl.formaPgto.id}" size="6" maxlength="10" readonly="true"/>
-					<h:outputLabel value="Nome"/>
-					<p:inputText value="#{formaPgtoCtrl.formaPgto.descricao}" size="30" maxlength="20" />
-					<h:outputLabel value="Nº Max. parcelas"/>
-					<p:inputText value="#{formaPgtoCtrl.formaPgto.numMaxParc}" size="6" maxlength="3" />
-					<h:outputLabel value="Nº Padrão de parcelas"/>
-					<p:inputText value="#{formaPgtoCtrl.formaPgto.numPadraoParc}" size="6" maxlength="3" />
-					<h:outputLabel value="Intervalo (dias)"/>
-					<p:inputText value="#{formaPgtoCtrl.formaPgto.intervaloDias}" size="6" maxlength="3" />
+					<h:outputLabel value="Código" />
+					<p:inputText value="#{formaPgtoCtrl.formaPgto.id}" size="6"
+						maxlength="10" readonly="true" />
+					<h:outputLabel value="Nome" />
+					<p:inputText value="#{formaPgtoCtrl.formaPgto.descricao}" size="30"
+						maxlength="20" />
+					<h:outputLabel value="Nº Max. parcelas" />
+					<p:inputText value="#{formaPgtoCtrl.formaPgto.numMaxParc}" size="6"
+						maxlength="3" />
+					<h:outputLabel value="Nº Padrão de parcelas" />
+					<p:inputText value="#{formaPgtoCtrl.formaPgto.numPadraoParc}"
+						size="6" maxlength="3" />
+					<h:outputLabel value="Intervalo (dias)" />
+					<p:inputText value="#{formaPgtoCtrl.formaPgto.intervaloDias}"
+						size="6" maxlength="3" />
 				</h:panelGrid>
-				<h:commandButton value="Excluir" action="#{formaPgtoCtrl.actionExcluir}" update="growl"></h:commandButton>
-				<h:commandButton value="Gravar" action="#{formaPgtoCtrl.actionGravar}" update="growl"></h:commandButton>
+				<h:commandButton value="Excluir"
+					action="#{formaPgtoCtrl.actionExcluir}" update="growl"></h:commandButton>
+				<h:commandButton value="Gravar"
+					action="#{formaPgtoCtrl.actionGravar}" update="growl"></h:commandButton>
 				<h:commandButton value="Cancelar" oncomplete="cadDialog.hide()"></h:commandButton>
 			</p:outputPanel>
 		</p:dialog>

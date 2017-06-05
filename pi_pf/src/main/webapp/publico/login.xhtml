@@ -4,14 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 
 <h:head>
 	<title>Login</title>
 </h:head>
 
-<h:body>
+<h:body >
+
+<div align="center">
+	<ui:insert name="header">
+		<ui:include src="/templates/modelo.xhtml" />
+	</ui:insert>
+	
+		<p:dialog header="Autenticação" closable="true" draggable="false"
+		resizable="false" modal="true" visible="true">
 	<h:panelGroup rendered="#{!empty param.login_error}">
    Erro ao efetuar o login.<br />
    Motivo: #{SPRING_SECURITY_LAST_EXCEPTION.message}
@@ -36,13 +45,17 @@
 			<tr>
 				<td></td>
 				<td><input type="submit" value="Logar" /></td>
+				<!-- <td><h:commandButton value="Cancelar" oncomplete="cadDialog.hide()"></h:commandButton></td> -->
 			</tr>
 
 		</table>
 		<script>
 			document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
 		</script>
+		
 	</form>
+	</p:dialog>
+</div>
 
 </h:body>
 </html>

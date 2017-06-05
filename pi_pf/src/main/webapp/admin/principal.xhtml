@@ -11,6 +11,9 @@
 </h:head>
 
 <h:body>
+	<ui:insert name="header">
+		<ui:include src="/templates/modelo.xhtml" />
+	</ui:insert>
 	<h1>
 		<h:outputText value="Área - Administrador" />
 	</h1>
@@ -19,9 +22,10 @@
 		<lu>
 		<li><h:commandLink value="Produto" action="/admin/lista_produto" />
 		</li>
-		<li><h:commandLink value="Cliente" action="#{pessoaCtrl.actionInserir}" />
-		</li>
-		<li><h:outputLink onclick="document.location='#{request.contextPath}/j_spring_securiy_logout'" ></h:outputLink>
+		<li><h:commandLink value="Cliente"
+				action="#{pessoaCtrl.actionInserir}" /></li>
+		<li><h:outputLink
+				onclick="document.location='#{request.contextPath}/j_spring_securiy_logout'"></h:outputLink>
 		</li>
 
 		</lu>

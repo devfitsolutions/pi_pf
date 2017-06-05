@@ -1,11 +1,19 @@
 package pi_pf.negocio;
 
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 import pi_pf.persistencia.ProdutoDAO;
 import pi_pf.beans.Produto;
@@ -16,7 +24,7 @@ public class ProdutoCtrl implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private Produto produto;
-	
+	private Produto prodSelecionado;
 	
 	public List<Produto> getListagem(){
 		return ProdutoDAO.listagem("");
@@ -47,12 +55,33 @@ public class ProdutoCtrl implements Serializable{
 		return "/produto/lista_produto";
 	}
 	
+	public void upload(FileUploadEvent evento) {
+		try {
+			UploadedFile arquivoUpload = evento.getFile();
+			Path arquivoTemp = Files.createTempFile(null, null);
+			Files.copy(arquivoUpload.getInputstream(), arquivoTemp, StandardCopyOption.REPLACE_EXISTING);
+			produto.setCaminho(arquivoTemp.toString());
+			//Messages.addGlobalInfo(produto.getCaminho());
+			//System.out.println("Caminho: " + produto.getCaminho());
+		} catch (IOException erro) {
+			//Messages.addGlobalInfo("Ocorreu um erro ao tentar realizar o upload de arquivo");
+			erro.printStackTrace();
+		}
+	}
 		
 	public Produto getProduto() {
 		return produto;
 	}
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+
+	public Produto getProdSelecionado() {
+		return prodSelecionado;
+	}
+
+	public void setProdSelecionado(Produto prodSelecionado) {
+		this.prodSelecionado = prodSelecionado;
 	}
 
 

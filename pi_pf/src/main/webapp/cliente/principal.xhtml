@@ -7,9 +7,14 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
- <title>Área do Cliente</title>
+	<title>Área do Cliente</title>
 </h:head>
 <h:body>
- <h1><h:outputLabel value="Área - Cliente" /> </h1>
+	<ui:insert name="header">
+		<ui:include src="/templates/modelo.xhtml" />
+	</ui:insert>
+	<h1>
+		<h:outputLabel value="Área - Cliente" />
+	</h1>
 </h:body>
 </html>

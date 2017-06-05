@@ -11,10 +11,13 @@
 	<title>Pessoa</title>
 </h:head>
 <h:body>
+	<ui:insert name="header">
+		<ui:include src="/templates/modelo.xhtml" />
+	</ui:insert>
 	<h:form>
-	<!-- <p:commandButton value="Inicio" action="/publico/index.xhtml" /><br /> -->
+		<!-- <p:commandButton value="Inicio" action="/publico/index.xhtml" /><br /> -->
 		<div align="center">
-			<p:panelGrid columns="2">
+			<p:panelGrid columns="2" >
 				<f:facet name="header">
 					<p:outputLabel value="Cadastro de Pessoas" />
 				</f:facet>
@@ -34,7 +37,7 @@
 				<p:outputLabel value="Rua" />
 				<p:inputText value="#{pessoaCtrl.pessoa.rua}" />
 				<p:outputLabel value="Bairro" />
-				<p:inputText value="#{pessoaCtrl.pessoa.bairro}"/>
+				<p:inputText value="#{pessoaCtrl.pessoa.bairro}" />
 				<p:outputLabel value="UF" />
 				<p:selectOneMenu filter="true" value="#{pessoaCtrl.end_Estado}"
 					converter="omnifaces.SelectItemsConverter">
@@ -47,9 +50,10 @@
 
 				<p:outputLabel value="Cidade" />
 				<p:selectOneMenu filter="true" id="cidade"
-					value="#{pessoaCtrl.pessoa.cidade}"
+					value="#{pessoaCtrl.cidade}"
 					converter="omnifaces.SelectItemsConverter">
-					<f:selectItem noSelectionOption="true" itemLabel="Selecione a Cidade" />
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione a Cidade" />
 					<f:selectItems value="#{pessoaCtrl.cidades}" var="cidade"
 						itemValue="#{cidade}" itemLabel="#{cidade.nome}" />
 				</p:selectOneMenu>
