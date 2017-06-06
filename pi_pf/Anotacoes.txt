@@ -1,1 +1,10 @@
 http://www.drogariaspacheco.com.br/dorflex-sanofi-10-comprimidos/p
+
+create table itens_pedido (ipe_id serial,
+                           ped_id integer not null,
+                           ipe_qtde integer not null,
+                           ipe_valorunit float,
+                           ipe_subtotal float,
+                           constraint fkip foreign key (ped_id) references pedido(ped_id)
+                           );
+

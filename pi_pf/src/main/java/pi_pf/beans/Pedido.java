@@ -54,6 +54,15 @@ public class Pedido implements Serializable {
 	
 	@Column (name="ped_desconto")
 	private float desconto;
+	
+	public List<Produto> getListaProdutos() {
+		return listaProdutos;
+	}
+
+	public void setListaProdutos(List<Produto> produtos) {
+		this.listaProdutos = produtos;
+	}
+
 
 	public int getPed_id() {
 		return ped_id;
@@ -119,12 +128,5 @@ public class Pedido implements Serializable {
 		this.desconto = desconto;
 	}
 
-	public List<Produto> getListaProdutos() {
-		return listaProdutos;
-	}
-
-	public void setListaProdutos(List<Produto> produtos) {
-		this.listaProdutos = produtos;
-	}
 
 }
