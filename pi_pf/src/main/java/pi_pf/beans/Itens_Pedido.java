@@ -25,7 +25,7 @@ public class Itens_Pedido implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="ped_id")
-	private Pedido pedido = new Pedido();
+	private Pedido pedido;
 	
 	
 	@Column(name="ipe_qtde")

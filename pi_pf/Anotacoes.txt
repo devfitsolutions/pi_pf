@@ -1,5 +1,20 @@
 http://www.drogariaspacheco.com.br/dorflex-sanofi-10-comprimidos/p
 
+create table pedido (ped_id serial primary key,
+                     prod_id int not null,
+                     pes_id int not null,
+                     fpg_id int not null,
+                     ped_dataemissao date not null,
+                     ped_status varchar(15) not null,
+                     ped_data_autorizacao date,
+                     ped_total float,
+                     ped_desconto float,
+                     ped_qtdparcelas integer,
+                     constraint fkprod foreign key (prod_id) references produto(prod_id),
+                     constraint fkpes foreign key (pes_id) references pessoa(pes_id),
+                     constraint fkfpg foreign key (fpg_id) references forma_pgto(fpg_id)
+                     )
+                     
 create table itens_pedido (ipe_id serial,
                            ped_id integer not null,
                            ipe_qtde integer not null,

@@ -1,9 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
@@ -20,13 +18,10 @@
 
 	<h:form>
 		<lu>
-		<li><h:commandLink value="Produto" action="/admin/lista_produto" />
-		</li>
-		<li><h:commandLink value="Cliente"
-				action="#{pessoaCtrl.actionInserir}" /></li>
-		<li><h:outputLink
-				onclick="document.location='#{request.contextPath}/j_spring_securiy_logout'"></h:outputLink>
-		</li>
+		<li><h:commandLink value="Produto" action="/admin/lista_produto" /></li>
+		<li><h:commandLink value="Cliente" action="#{pessoaCtrl.actionInserir}" /></li>
+		<li><h:commandLink value="Formas de Pagamento" action="/admin/lista_formaPgto" /></li>
+		<li><h:outputLink onclick="document.location='#{request.contextPath}/j_spring_securiy_logout'"></h:outputLink></li>
 
 		</lu>
 	</h:form>

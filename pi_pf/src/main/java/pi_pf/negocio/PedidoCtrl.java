@@ -10,6 +10,7 @@ import pi_pf.beans.FormaPgto;
 import pi_pf.beans.Itens_Pedido;
 import pi_pf.beans.Pedido;
 import pi_pf.beans.Produto;
+import pi_pf.persistencia.PedidoDAO;
 
 @ManagedBean
 @SessionScoped
@@ -27,11 +28,10 @@ public class PedidoCtrl implements Serializable {
 
 	// private String usuario = uc.getPessoa().getEmail();
 
-
 	public String adicionarProdutoAoCarrinho(Produto p) {
 		// Adiciona produtos no carrinho
 		this.pedido.getListaProdutos().add(p);
-		
+
 		return null;
 	}
 
@@ -51,19 +51,23 @@ public class PedidoCtrl implements Serializable {
 	public boolean isDesabilitarParcelas() {
 		return desabilitarParcelas;
 	}
-	
-    public void valorDoPedido(){ // Varre a lista de produtos e soma todos os preços
-		float valorTotal= 0;
-		for(int i = 0; i < pedido.getListaProdutos().size(); i++){
+
+	public void valorDoPedido() { // Varre a lista de produtos e soma todos os
+									// preços
+		float valorTotal = 0;
+		for (int i = 0; i < pedido.getListaProdutos().size(); i++) {
 			valorTotal += pedido.getListaProdutos().get(i).getPreco();
 		}
-		//this.itens.setSubTotal(valorTotal);
+		// this.itens.setSubTotal(valorTotal);
 		this.pedido.setTotal(valorTotal);
 	}
-	
-    public String calcQuantidadeProduto(Produto p){ // pega a quantidade de produtos que o cliente solicitou e o preço (subtotal)
+
+	public String calcQuantidadeProduto(Produto p) { // pega a quantidade de
+														// produtos que o
+														// cliente solicitou e o
+														// preço (subtotal)
 		valorDoPedido();
-		if(itens.getQuantidade() > 1){
+		if (itens.getQuantidade() > 1) {
 			float subtotalAtualizado = this.itens.getSubTotal() - p.getPreco();
 			int qtd = itens.getQuantidade();
 			this.itens.setSubTotal(subtotalAtualizado + (p.getPreco() * qtd));
@@ -71,49 +75,65 @@ public class PedidoCtrl implements Serializable {
 		}
 		return null;
 	}
-	
-	public String excluirProdutoDoCarrinho(Produto p ){
-		for(int i = 0; i < this.pedido.getListaProdutos().size(); i++){
-			if(this.pedido.getListaProdutos().get(i).getId() == p.getId()){
+
+	public String excluirProdutoDoCarrinho(Produto p) {
+		for (int i = 0; i < this.pedido.getListaProdutos().size(); i++) {
+			if (this.pedido.getListaProdutos().get(i).getId() == p.getId()) {
 				this.pedido.getListaProdutos().remove(i);
 				this.itens.setSubTotal(this.getItens().getSubTotal() - p.getPreco());
 			}
 		}
 		return null;
 	}
-	
-    public void setDesabilitarParcelas(boolean desabilitarParcelas) {
+
+	public void setDesabilitarParcelas(boolean desabilitarParcelas) {
 		this.desabilitarParcelas = desabilitarParcelas;
 	}
 
-	public String definirParcelas(){ // para saber se a opção de forma de pagamento é de cartão de crédito, boleto ou débito 
-		
-		if(this.formaPgto.getId() == 1){
+	public String definirParcelas() { // para saber se a opção de forma de
+										// pagamento é de cartão de crédito,
+										// boleto ou débito
+
+		if (this.formaPgto.getId() == 6) {
+
 			this.desabilitarParcelas = false;
-			this.pedido.setTotal(this.itens.getSubTotal());
-			this.pedido.setDesconto(0);
-			
-		}else if(this.formaPgto.getId() == 2){
-			this.pedido.setDesconto((float)0.02);
-			this.pedido.setDesconto(0);
+
+		} else {
 			this.desabilitarParcelas = true;
-			this.formaPgto.setNumPadraoParc(1);	
-			
-		} else{
-			this.desabilitarParcelas = true;
-			this.formaPgto.setNumPadraoParc(1);		
-			this.pedido.setTotal(this.itens.getSubTotal());
-			this.pedido.setDesconto(0);
+			pedido.setQtdParcelas(0);
+
 		}
 		return null;
 	}
-	
-	public String jurosSobreParcela(){ 
-		
-			this.pedido.setTotal(this.itens.getSubTotal());
+
+	public String jurosSobreParcela() {
+
+		this.pedido.setTotal(this.itens.getSubTotal());
 		return null;
 	}
-	
+
+	public void gravarPedido() {
+
+		System.out.println(pedido.getTotal());
+		System.out.println(formaPgto.getId());
+		System.out.println(pedido.getQtdParcelas());
+	/*	for (Integer i = 0; i <= pedido.getListaProdutos().size(); i++) {
+
+			System.out.println(pedido.getListaProdutos().get(i).getNome());
+
+		}*/
+
+		try {
+			PedidoDAO.inserir(pedido);
+
+		} catch (RuntimeException erro) {
+			System.out.println("Erro ao tentar gravar um pedido.");
+			erro.printStackTrace();
+			// return null;
+		}
+
+	}
+
 	public FormaPgto getFormaPgto() {
 		return formaPgto;
 	}
@@ -133,6 +153,7 @@ public class PedidoCtrl implements Serializable {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
+
 	public Itens_Pedido getItens() {
 		return itens;
 	}

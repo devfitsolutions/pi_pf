@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,15 +28,16 @@ public class Pedido implements Serializable {
 	@Column(name="ped_id")
 	private int ped_id;
 	
-	@OneToMany
-	@JoinColumn(name="prod_id")
+	//@OneToMany
+	//@JoinColumn(name="prod_id")
+	@OneToMany(mappedBy = "prod_id", cascade = CascadeType.ALL, fetch=FetchType.EAGER) //cascade significa que quando excluir um pessoa da tabela, todos os telefone também serão excluídos.
 	private List<Produto> listaProdutos = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name="pes_id")
 	private Pessoa cliente;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn (name="fpg_id")
 	private FormaPgto forma_pagamento;
 	
@@ -55,9 +58,29 @@ public class Pedido implements Serializable {
 	@Column (name="ped_desconto")
 	private float desconto;
 	
+	@Column (name="ped_qtdparcelas")
+	private float qtdParcelas;
+	
 	public List<Produto> getListaProdutos() {
 		return listaProdutos;
 	}
+
+	
+	
+	
+	public float getQtdParcelas() {
+		return qtdParcelas;
+	}
+
+
+
+
+	public void setQtdParcelas(float qtdParcelas) {
+		this.qtdParcelas = qtdParcelas;
+	}
+
+
+
 
 	public void setListaProdutos(List<Produto> produtos) {
 		this.listaProdutos = produtos;
