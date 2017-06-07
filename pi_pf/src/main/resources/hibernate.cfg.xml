@@ -31,6 +31,6 @@
 		<mapping class="pi_pf.beans.End_Estado" />
 		<mapping class="pi_pf.beans.Cidade" />
 		<mapping class="pi_pf.beans.Pedido" />
-		<mapping class="pi_pf.beans.Itens_Pedido" /> 
+		<!-- <mapping class="pi_pf.beans.Itens_Pedido" />  --> 
 	</session-factory>
 </hibernate-configuration>
