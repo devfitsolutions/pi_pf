@@ -4,10 +4,8 @@ package pi_pf.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,7 +15,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="tens_pedido")
+@Table(name="itens_pedido")
 public class Itens_Pedido {
 
 	@Id
@@ -34,18 +32,23 @@ public class Itens_Pedido {
 	
 	@Column(name="ipe_subtotal")
 	private float subTotal;
-	
-	@OneToMany(mappedBy = "prod_id", cascade = CascadeType.ALL, fetch=FetchType.EAGER) //cascade significa que quando excluir um pessoa da tabela, todos os telefone também serão excluídos.
-    private List<Produto> listaProdutos = new ArrayList<>();
+
 
 	@ManyToOne
 	@JoinColumn(name="ped_id", nullable = false)
 	private Pedido pedido;
 	
+	@OneToMany
+	@JoinColumn(name="prod_id")
+	private List<Produto> listaProdutos = new ArrayList<>();
+	
 //	@ManyToOne
 //	@JoinColumn(name="prod_id", nullable = false)
 //	private Produto produto;
 	
+
+	
+
 
 	public Pedido getPedido() {
 		return pedido;
