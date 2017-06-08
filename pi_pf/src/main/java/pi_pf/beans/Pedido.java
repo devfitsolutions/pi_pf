@@ -1,48 +1,31 @@
 package pi_pf.beans;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
+@Entity
 @Table(name = "pedido")
-public class Pedido implements Serializable {
+public class Pedido  {
 
-	private static final long serialVersionUID = 1L;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ped_id")
 	private int ped_id;
 	
-	//@OneToMany
-	//@JoinColumn(name="prod_id")
-	@OneToMany(mappedBy = "prod_id", cascade = CascadeType.ALL, fetch=FetchType.EAGER) //cascade significa que quando excluir um pessoa da tabela, todos os telefone também serão excluídos.
-	private List<Produto> listaProdutos = new ArrayList<>();
-	
-	@ManyToOne
-	@JoinColumn(name="pes_id")
-	private Pessoa cliente;
-	
-	@ManyToOne
-	@JoinColumn (name="fpg_id")
-	private FormaPgto forma_pagamento;
-	
 	@Column (name="ped_dataEmissao")
-	@Type(type="date")
+	@Type(type="date")    //https://www.youtube.com/watch?v=wgh3h4zqOeU&list=PL_GwGUsBlNyfI0W3ggfffhBdJUqB4981Z&index=16
 	private Date dataEmissao;
 	
 	@Column (name="ped_status")
@@ -61,31 +44,13 @@ public class Pedido implements Serializable {
 	@Column (name="ped_qtdparcelas")
 	private float qtdParcelas;
 	
-	public List<Produto> getListaProdutos() {
-		return listaProdutos;
-	}
-
+	@ManyToOne
+	@JoinColumn(name="pes_id")
+	private Pessoa cliente;
 	
-	
-	
-	public float getQtdParcelas() {
-		return qtdParcelas;
-	}
-
-
-
-
-	public void setQtdParcelas(float qtdParcelas) {
-		this.qtdParcelas = qtdParcelas;
-	}
-
-
-
-
-	public void setListaProdutos(List<Produto> produtos) {
-		this.listaProdutos = produtos;
-	}
-
+	@ManyToOne
+	@JoinColumn (name="fpg_id")
+	private FormaPgto forma_pagamento;
 
 	public int getPed_id() {
 		return ped_id;
@@ -93,22 +58,6 @@ public class Pedido implements Serializable {
 
 	public void setPed_id(int ped_id) {
 		this.ped_id = ped_id;
-	}
-
-	public Pessoa getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Pessoa cliente) {
-		this.cliente = cliente;
-	}
-
-	public FormaPgto getForma_pagamento() {
-		return forma_pagamento;
-	}
-
-	public void setForma_pagamento(FormaPgto forma_pagamento) {
-		this.forma_pagamento = forma_pagamento;
 	}
 
 	public Date getDataEmissao() {
@@ -151,5 +100,32 @@ public class Pedido implements Serializable {
 		this.desconto = desconto;
 	}
 
+	public float getQtdParcelas() {
+		return qtdParcelas;
+	}
+
+	public void setQtdParcelas(float qtdParcelas) {
+		this.qtdParcelas = qtdParcelas;
+	}
+
+	public Pessoa getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Pessoa cliente) {
+		this.cliente = cliente;
+	}
+
+	public FormaPgto getForma_pagamento() {
+		return forma_pagamento;
+	}
+
+	public void setForma_pagamento(FormaPgto forma_pagamento) {
+		this.forma_pagamento = forma_pagamento;
+	}
+
+
+
+		
 
 }

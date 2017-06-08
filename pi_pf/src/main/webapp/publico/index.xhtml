@@ -6,7 +6,7 @@
 	<ui:define name="conteudo">
 		<h:form id="form">
 
-		 	<p:commandButton id="finalizar" style="margin-left: 89%" value="Finalizar Pedido"  action="/cliente/itens_pedido.xhtml" /> 
+		 	<p:commandButton id="finalizar" style="margin-left: 89%" value="Finalizar Pedido"  action="#{pedidoCtrl.actionPedido}" /> 
 
 			<p:dataGrid var="produto" value="#{produtoCtrl.listagem}" columns="3" layout="grid" rows="12" paginator="true" id="produtos"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

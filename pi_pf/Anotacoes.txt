@@ -17,9 +17,10 @@ create table pedido (ped_id serial primary key,
                      
 create table itens_pedido (ipe_id serial,
                            ped_id integer not null,
+                           prod_id integer not null,
                            ipe_qtde integer not null,
                            ipe_valorunit float,
                            ipe_subtotal float,
+                           constraint fkipp foreign key (prod_id) references produto(prod_id),
                            constraint fkip foreign key (ped_id) references pedido(ped_id)
                            );
-

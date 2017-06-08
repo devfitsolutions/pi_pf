@@ -24,14 +24,10 @@ public class PedidoCtrl implements Serializable {
 	private FormaPgto formaPgto = new FormaPgto();
 	private boolean desabilitarParcelas = true;
 
-	// private UsuarioController uc = new UsuarioController();
 
-	// private String usuario = uc.getPessoa().getEmail();
 
-	public String adicionarProdutoAoCarrinho(Produto p) {
-		// Adiciona produtos no carrinho
-		this.pedido.getListaProdutos().add(p);
-
+	public String adicionarProdutoAoCarrinho(Produto p) { 	// Adiciona produtos no carrinho
+		this.itens.getListaProdutos().add(p);
 		return null;
 	}
 
@@ -44,28 +40,25 @@ public class PedidoCtrl implements Serializable {
 		return hoje;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
-	}
-
 	public boolean isDesabilitarParcelas() {
 		return desabilitarParcelas;
 	}
-
-	public void valorDoPedido() { // Varre a lista de produtos e soma todos os
-									// preços
+	public String actionPedido() {
+		valorDoPedido();
+		return "itens_pedido?faces-redirect=true";
+	}
+	public void valorDoPedido() { // Varre a lista de produtos e soma todos os preços
+									
 		float valorTotal = 0;
-		for (int i = 0; i < pedido.getListaProdutos().size(); i++) {
-			valorTotal += pedido.getListaProdutos().get(i).getPreco();
+		for (int i = 0; i < itens.getListaProdutos().size(); i++) {
+			valorTotal += itens.getListaProdutos().get(i).getPreco();
 		}
 		// this.itens.setSubTotal(valorTotal);
 		this.pedido.setTotal(valorTotal);
 	}
 
-	public String calcQuantidadeProduto(Produto p) { // pega a quantidade de
-														// produtos que o
-														// cliente solicitou e o
-														// preço (subtotal)
+	public String calcQuantidadeProduto(Produto p) { // pega a quantidade de produtos que o cliente solicitou e o preço (subtotal)
+										
 		valorDoPedido();
 		if (itens.getQuantidade() > 1) {
 			float subtotalAtualizado = this.itens.getSubTotal() - p.getPreco();
@@ -77,9 +70,9 @@ public class PedidoCtrl implements Serializable {
 	}
 
 	public String excluirProdutoDoCarrinho(Produto p) {
-		for (int i = 0; i < this.pedido.getListaProdutos().size(); i++) {
-			if (this.pedido.getListaProdutos().get(i).getId() == p.getId()) {
-				this.pedido.getListaProdutos().remove(i);
+		for (int i = 0; i < this.itens.getListaProdutos().size(); i++) {
+			if (this.itens.getListaProdutos().get(i).getId() == p.getId()) {
+				this.itens.getListaProdutos().remove(i);
 				this.itens.setSubTotal(this.getItens().getSubTotal() - p.getPreco());
 			}
 		}
@@ -90,10 +83,8 @@ public class PedidoCtrl implements Serializable {
 		this.desabilitarParcelas = desabilitarParcelas;
 	}
 
-	public String definirParcelas() { // para saber se a opção de forma de
-										// pagamento é de cartão de crédito,
-										// boleto ou débito
-
+	public String definirParcelas() { // para saber se a opção de forma de pagamento é de cartão de crédito, boleto ou débito
+									
 		if (this.formaPgto.getId() == 6) {
 
 			this.desabilitarParcelas = false;
@@ -106,17 +97,17 @@ public class PedidoCtrl implements Serializable {
 		return null;
 	}
 
-	public String jurosSobreParcela() {
-
-		this.pedido.setTotal(this.itens.getSubTotal());
-		return null;
-	}
+//	public String jurosSobreParcela() {
+//
+//		this.pedido.setTotal(this.itens.getSubTotal());
+//		return null;
+//	}
 
 	public void gravarPedido() {
 
-		System.out.println(pedido.getTotal());
+	////	System.out.println(pedido.getTotal());
 		System.out.println(formaPgto.getId());
-		System.out.println(pedido.getQtdParcelas());
+	////	System.out.println(pedido.getQtdParcelas());
 	/*	for (Integer i = 0; i <= pedido.getListaProdutos().size(); i++) {
 
 			System.out.println(pedido.getListaProdutos().get(i).getNome());

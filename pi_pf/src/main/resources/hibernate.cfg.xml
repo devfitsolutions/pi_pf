@@ -24,13 +24,14 @@
 		<property name="use_sql_coments">true</property>
 
 		<!-- Mapeando das Classes -->
-		<mapping class="pi_pf.beans.Produto" />
 		<mapping class="pi_pf.beans.Pessoa" />
 		<mapping class="pi_pf.beans.Fone"/>
 		<mapping class="pi_pf.beans.FormaPgto" />
 		<mapping class="pi_pf.beans.End_Estado" />
 		<mapping class="pi_pf.beans.Cidade" />
+		<mapping class="pi_pf.beans.Produto" />
+		<mapping class="pi_pf.beans.Itens_Pedido" />  
 		<mapping class="pi_pf.beans.Pedido" />
-		<!-- <mapping class="pi_pf.beans.Itens_Pedido" />  --> 
+		 
 	</session-factory>
 </hibernate-configuration>
