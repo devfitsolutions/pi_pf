@@ -5,6 +5,9 @@ import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import pi_pf.beans.FormaPgto;
 import pi_pf.beans.Itens_Pedido;
@@ -25,6 +28,8 @@ public class PedidoCtrl implements Serializable {
 	private FormaPgto formaPgto = new FormaPgto();
 	private Pessoa pessoa;
 	private boolean desabilitarParcelas = true;
+//	@Autowired
+//	private ControleAcessoController successHandler;
 
 
 
@@ -102,6 +107,8 @@ public class PedidoCtrl implements Serializable {
 	public void gravarPedido() {
 		
 		try {
+			Pessoa userLogado = (Pessoa) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado");
+			System.out.println(userLogado.getEmail());
 			PedidoDAO.inserir(pedido);
 			
 		} catch (RuntimeException erro) {

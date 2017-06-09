@@ -2,6 +2,7 @@ package pi_pf.negocio;
 import java.io.IOException;
 import java.util.Set;
 
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +15,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import pi_pf.beans.Pessoa;
+import pi_pf.persistencia.PessoaDAO;
 
 
 public class ControleAcessoController implements AuthenticationSuccessHandler  {
 
 
 		private Pessoa pessoa;
+		
 
 		public Pessoa getPessoa() {
 			return pessoa;
@@ -46,13 +49,13 @@ public class ControleAcessoController implements AuthenticationSuccessHandler  {
 		@Override
 		public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 				throws IOException, ServletException {
-			
+			pessoa = PessoaDAO.porEmail(authentication.getName());
 			Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 			if(roles.contains("ROLE_ADMINISTRADOR")){
 				response.sendRedirect("admin/principal.xhtml");
 			}else if (roles.contains("ROLE_CLIENTE")){
 				response.sendRedirect("cliente/forma_de_pagamento.xhtml");
 			}
-			
+			//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", pessoa);
 		}
 	}

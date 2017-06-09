@@ -54,12 +54,24 @@ public class PessoaDAO implements Serializable {
 				consulta = sessao.createQuery("from Pessoa order by pes_nome ");
 			} else {
 				consulta = sessao.createQuery("from Pessoa  "
-						+ "where prod_nome like :parametro order by pes_nome ");
+						+ "where pes_nome like :parametro order by pes_nome ");
 				consulta.setString("parametro", "%" + filtro + "%");
 			}
 			List lista = consulta.list();
 			sessao.close();
 			return lista;
+		}
+		
+		
+		public static Pessoa porEmail(String filtro) {
+			Session sessao = HibernateUtil.getSessionFactory().openSession();
+			Query consulta = sessao.createQuery("from Pessoa  "
+						+ "where pes_email = :parametro ");
+				consulta.setString("parametro", filtro);
+//			}
+			Pessoa usuario = (Pessoa) consulta.uniqueResult();
+			sessao.close();
+			return usuario;
 		}
 				
 
