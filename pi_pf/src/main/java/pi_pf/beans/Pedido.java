@@ -31,7 +31,7 @@ public class Pedido  {
 	@Column (name="ped_status")
 	private String status;
 	
-	@Column (name="ped_dataAutorizacao")
+	@Column (name="ped_data_Autorizacao")
 	@Type(type="date")
 	private Date dataAutorizacao;
 	
@@ -100,7 +100,7 @@ public class Pedido  {
 		this.desconto = desconto;
 	}
 
-	public float getQtdParcelas() {
+public float getQtdParcelas() {
 		return qtdParcelas;
 	}
 

@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import pi_pf.beans.FormaPgto;
 import pi_pf.beans.Itens_Pedido;
 import pi_pf.beans.Pedido;
+import pi_pf.beans.Pessoa;
 import pi_pf.beans.Produto;
 import pi_pf.persistencia.PedidoDAO;
 
@@ -22,6 +23,7 @@ public class PedidoCtrl implements Serializable {
 	private Produto produto = new Produto();
 	private Itens_Pedido itens = new Itens_Pedido();
 	private FormaPgto formaPgto = new FormaPgto();
+	private Pessoa pessoa;
 	private boolean desabilitarParcelas = true;
 
 
@@ -97,26 +99,11 @@ public class PedidoCtrl implements Serializable {
 		return null;
 	}
 
-//	public String jurosSobreParcela() {
-//
-//		this.pedido.setTotal(this.itens.getSubTotal());
-//		return null;
-//	}
-
 	public void gravarPedido() {
-
-	////	System.out.println(pedido.getTotal());
-		System.out.println(formaPgto.getId());
-	////	System.out.println(pedido.getQtdParcelas());
-	/*	for (Integer i = 0; i <= pedido.getListaProdutos().size(); i++) {
-
-			System.out.println(pedido.getListaProdutos().get(i).getNome());
-
-		}*/
-
+		
 		try {
 			PedidoDAO.inserir(pedido);
-
+			
 		} catch (RuntimeException erro) {
 			System.out.println("Erro ao tentar gravar um pedido.");
 			erro.printStackTrace();
@@ -136,6 +123,11 @@ public class PedidoCtrl implements Serializable {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
+	
+
+	public Pedido getPedido() {
+		return pedido;
+	}
 
 	public Produto getProduto() {
 		return produto;
@@ -152,4 +144,14 @@ public class PedidoCtrl implements Serializable {
 	public void setItens(Itens_Pedido itens) {
 		this.itens = itens;
 	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+	
+	
 }

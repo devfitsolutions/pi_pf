@@ -48,11 +48,11 @@
 				<p:ajax event="change" listener="#{pedidoCtrl.definirParcelas}"
 					update=":frm-pagamento:parcelas :frm-pagamento-subtotal" />
 			</p:selectOneRadio>
-
+			
 			<p:outputLabel value="Parcelas" />
-			<p:selectOneMenu disabled="#{pedidoCtrl.desabilitarParcelas}"
-				id="parcelas" value="#{pedidoCtrl.pedido.qtdParcelas}" >
-				<!-- <p:ajax event="change" listener="#{pedidoCtrl.jurosSobreParcela}" update=":frm-pagamento-subtotal:valorTotal" /> -->
+			<p:selectOneMenu 
+				id="parcelas" value="#{pedidoCtrl.pedido.qtdParcelas}" var="pedido" >
+				<p:ajax event="change"  update=":frm-pagamento-subtotal:valorTotal" /> 
 				<f:selectItem itemValue="1" itemLabel="1x (sem juros)" />
 				<f:selectItem itemValue="2" itemLabel="2x (sem juros)" />
 				<f:selectItem itemValue="3" itemLabel="3x (sem juros)" />
