@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
 <ui:insert name="metadata" />
-	
+
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>DEVF</title>
@@ -18,23 +15,22 @@
 
 	<div id="geral">
 		<div id="topo" class="divTopo">
-			<p:graphicImage library="images" name="Banner.png"
-				styleClass="bannerCenter"  />
+			<p:graphicImage library="images" name="Banner.png" styleClass="bannerCenter" />
 		</div>
 
 		<div id="cabecalho" class="divCabecalho">
 			<h:form id="formMenu">
 				<p:menubar>
 					<p:submenu label="Arquivo">
-						<p:menuitem value="Sair" />
+						<p:menuitem value="Sair" icon="fa fa-close" onclick="document.location='#{request.contextPath}/j_spring_security_logout'" />
 					</p:submenu>
 
 					<p:submenu label="Navegação">
 						<p:menuitem value="Início" url="/publico/index.xhtml" />
-						<p:menuitem value="Formulário Pessoa" action="#{pessoaCtrl.actionInserirPessoaComum}" />
+						<p:menuitem value="Cadastro de usuário" action="#{pessoaCtrl.actionInserirPessoaComum}" />
 						<p:menuitem value="Acessar Área do cliente" url="/cliente/principal.xhtml" />
 						<p:menuitem value="Acessar Área Administrativa" url="/admin/principal.xhtml" />
-				
+
 					</p:submenu>
 
 					<p:submenu label="Ajuda">
@@ -43,9 +39,7 @@
 				</p:menubar>
 			</h:form>
 		</div>
-		<br />
-		<br />
-		<br />
+		<br /> <br /> <br />
 
 		<div id="conteudo">
 			<ui:insert name="conteudo" />

@@ -2,7 +2,6 @@ package pi_pf.negocio;
 import java.io.IOException;
 import java.util.Set;
 
-import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,4 +57,6 @@ public class ControleAcessoController implements AuthenticationSuccessHandler  {
 			}
 			//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", pessoa);
 		}
+		
+
 	}

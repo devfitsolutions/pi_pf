@@ -32,10 +32,7 @@ public class ProdutoCtrl implements Serializable{
 	
 	public String actionGravar(){
 		
-		System.out.println("ID = " + produto.getId());
-		System.out.println("Nome = " + produto.getNome());
-		System.out.println("Preco = " + produto.getPreco());
-		
+
 		if(produto.getId() == 0){
 			ProdutoDAO.inserir(produto);
 			return actionInserir();
@@ -47,10 +44,10 @@ public class ProdutoCtrl implements Serializable{
 	
 	public String actionInserir(){
 		produto = new Produto();
-		return "/produto/lista_produto";
+		return "/admin/lista_produto";
 	}
 	
-	public String actionExcluir(){
+	public String actionExcluir(Produto produto){
 		ProdutoDAO.excluir(produto);
 		return "/produto/lista_produto";
 	}
@@ -69,6 +66,11 @@ public class ProdutoCtrl implements Serializable{
 		}
 	}
 		
+	public String actionFecharDialogo(){
+		produto = new Produto();
+		
+		return "/admin/lista_produto";
+	}
 	public Produto getProduto() {
 		return produto;
 	}

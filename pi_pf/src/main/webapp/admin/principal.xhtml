@@ -18,7 +18,7 @@
 
 	<h:form>
 		<lu>
-		<li><h:commandLink value="Produto" action="/admin/lista_produto" /></li>
+		<li><h:commandLink value="Produto" action="#{produtoCtrl.actionInserir}" /></li>
 		<li><h:commandLink value="Cliente" action="#{pessoaCtrl.actionInserir}" /></li>
 		<li><h:commandLink value="Formas de Pagamento" action="/admin/lista_formaPgto" /></li>
 		<li><h:outputLink onclick="document.location='#{request.contextPath}/j_spring_securiy_logout'"></h:outputLink></li>
