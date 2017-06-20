@@ -18,7 +18,7 @@ create table pedido (ped_id serial primary key,
                      ped_data_autorizacao date,
                      ped_total float,
                      ped_desconto float,
-                     constraint fkprod foreign key (prod_id) references produto(prod_id),
+                     ped_qtdparcelas int,
                      constraint fkpes foreign key (pes_id) references pessoa(pes_id),
                      constraint fkfpg foreign key (fpg_id) references forma_pgto(fpg_id)
                      );
